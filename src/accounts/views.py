@@ -23,6 +23,7 @@ def loginview(request):
 		if form.is_valid():
 			username = form.cleaned_data.get("username")
 			password = form.cleaned_data.get("password")
+			print(username,password)
 			user = authenticate(username=username, password=password)
 			login(request, user)
 			return HttpResponseRedirect(reverse("home"))
@@ -57,7 +58,9 @@ def registerview(request):
 			email = form.cleaned_data.get('email')
 			username = form.cleaned_data.get("username")
 			password  = form.cleaned_data.get('password ')
-
+			cpassword  = form.cleaned_data.get('cpassword ')
+			print(password)
+			print(form.cleaned_data['password'])
 			user, create = User.objects.get_or_create(
 			
 				first_name=first_name,
@@ -66,8 +69,10 @@ def registerview(request):
 				email=email,
 
 			)
-			user.set_password(password)
+			user.set_password(form.cleaned_data['password'])
+			print(password)
 			user.save()
+			
 
 			pro = Profile(reg=reg, mobile=mobile, dob=dob, gender=gender, user=user)
 			pro.save()
