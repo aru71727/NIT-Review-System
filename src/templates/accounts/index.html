@@ -195,8 +195,14 @@ font-size:12;
 
 </div>
 <div class="navbar">
-  <a href="#home">Home</a>
-  <a href="{% url 'accounts:register' %}">SIGN UP!</a>
+  <a href="{% url 'home' %}">Home</a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'home' %}">{{ user.first_name }}</a>
+  <a href="{% url 'accounts:logout' %}">LOGOUT</a>
+  {% else %}
+  <a href="{% url 'accounts:register' %}">SIGN UP</a>
+  <a href="{% url 'accounts:login' %}">LOGIN</a>
+  {% endif %}
   <a href="">Overall</a>
   <div class="dropdown">
     <button class="dropbtn">Select NIT

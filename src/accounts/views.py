@@ -1,10 +1,43 @@
 from django.shortcuts import render
-from .forms import RegistrationForm
+from .forms import RegistrationForm,LoginForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Profile
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 #from django.core.urlresolvers import reverse
+
+
+from django.contrib.auth import (
+
+	authenticate,
+	login,
+	logout
+
+	)
+
+def loginview(request):
+	form = LoginForm(request.POST or None)
+	if request.method =="POST":
+		if form.is_valid():
+			username = form.cleaned_data.get("username")
+			password = form.cleaned_data.get("password")
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			return HttpResponseRedirect(reverse("home"))
+
+	context = {
+		'form':form 
+	}
+	return render(request, 'accounts/login.html', context)
+
+
+@login_required
+def logoutview(request):
+	logout(request)
+	return HttpResponseRedirect(reverse('home'))
+
 
 def func(request):
 	return render(request,'accounts/index.html')
