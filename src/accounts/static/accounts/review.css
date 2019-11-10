@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+.container .btn {
+  
+  
+  background-color: #f1f1f1;
+
+}
+
+.container .btn:hover {
+  background-color: black;
+  color: white;
+
+  color: white;
+font-size: 16px;
+  padding: 16px 30px;
+border-radius: 5px;
+  text-align: left;
+}

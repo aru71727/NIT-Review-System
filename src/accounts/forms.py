@@ -4,20 +4,26 @@ from django import forms
 from .models import Profile
 
 GENDER_CHOICES = [('Male','Male'), ('Female','Female'), ('Others','Others')]
-
+COLLEGE_CHOICES = [
+	('NIT Agartala','NIT Agartala'), ('NIT Allahabad','NIT Allahabad'), ('NIT Bhopal','NIT Bhopal'),
+	('NIT Calicut','NIT Calicut'), (' NIT Jamshedpur',' NIT Jamshedpur'), ('NIT Kurukshetra','NIT Kurukshetra'),
+	('NIT Raipur','NIT Raipur'), ('NIT Surathkal','NIT Surathkal'), ('NIT Tiruchirappalli','NIT Tiruchirappalli'),
+	('NIT Warangal','NIT Warangal')]
 class RegistrationForm(forms.Form):
 
 	first_name = forms.CharField(label="", widget=forms.TextInput(attrs={'autofocus':'on', 'autocomplete':'off', 'class':'form-control', 'placeholder':'First Name'}))
 	last_name = forms.CharField(label="", widget=forms.TextInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Surname'}))
-	password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Your Password'}))
-	cpassword = forms.CharField(label="", widget=forms.PasswordInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Confirm Password'}))
 	reg = forms.CharField(label="", widget=forms.TextInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Registration Number'}))
-	dob = forms.DateField(label="Date of birth", widget=forms.DateInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'YYYY-MM-DD'}))
-	gender = forms.CharField(label='Gender', widget=forms.RadioSelect(choices=GENDER_CHOICES, attrs={'class':'custom-control-inline'}))
+	#dob = forms.DateField(label="Date of birth", widget=forms.DateInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'YYYY-MM-DD'}))
+	#gender = forms.CharField(label='Gender', widget=forms.RadioSelect(choices=GENDER_CHOICES, attrs={'class':'custom-control-inline'}))
+	gender= forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_CHOICES))
+	college= forms.CharField(label='College', widget=forms.Select(choices=COLLEGE_CHOICES))
 	mobile = forms.CharField(label="", widget=forms.TextInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Mobile Number'}))
 	email = forms.CharField(label="", widget=forms.EmailInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Email address'}))
 	username = forms.CharField(label="", widget=forms.TextInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Username'}))
-
+	password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Your Password'}))
+	cpassword = forms.CharField(label="", widget=forms.PasswordInput(attrs={'autocomplete':'off','class':'form-control', 'placeholder':'Confirm Password'}))
+	
 	def clean_email(self):
 		email = self.cleaned_data.get("email")
 		if len(User.objects.filter(email=email)):

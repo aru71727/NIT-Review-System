@@ -188,7 +188,8 @@ font-size:12;
 <body>
 <div id="a">
 {% if user.is_authenticated %}
-<p class="title" >HELLO! {{ user.first_name }}</p>
+<p class="title" >HELLO! {{ user.first_name}}</p>
+
 {% else %}
 <p class="title" >NIT REVIEWS</p>
 {% endif %}
@@ -198,28 +199,30 @@ font-size:12;
 <div class="navbar">
   <a href="{% url 'home' %}">Home</a>
   {% if user.is_authenticated %}
-   <a href="{% url 'accounts:logout' %}"> GIVE REVIEW </a>
+
+   <a href="{% url 'accounts:review' id=user.id %}"> GIVE REVIEW </a>
   <a href="{% url 'accounts:logout' %}">LOGOUT</a>
+
   {% else %}
   <a href="{% url 'accounts:register' %}">SIGN UP</a>
   <a href="{% url 'accounts:login' %}">LOGIN</a>
   {% endif %}
-  <a href="">Overall</a>
+  <a href="{% url 'accounts:graph' %}">Overall</a>
   <div class="dropdown">
     <button class="dropbtn">Select NIT
     
     </button>
   <div class="dropdown-content">
-  <a href="#"> NIT Agartala</a>
-  <a href="#"> NIT Allahabad</a>
-  <a href="#">NIT Bhopal</a>
-  <a href="#"> NIT Calicut</a>
-  <a href="#"> NIT Jamshedpur</a>
-  <a href="#"> NIT Kurukshetra</a>
-  <a href="#"> NIT Raipur</a>
-  <a href="#">NIT Surathkal</a>
-  <a href="#"> NIT Tiruchirappalli</a>
-  <a href="#">NIT Warangal</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Agartala'%}">NIT Agartala</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Allahabad'%}">NIT Allahabad</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Bhopal'%}">NIT Bhopal</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Calicut'%}">NIT Calicut</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Jamshedpur'%}">NIT Jamshedpur</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Kurukshetra'%}">NIT Kurukshetra</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Raipur'%}">NIT Raipur</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Surathkal'%}">NIT Surathkal</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Tiruchirappalli'%}">NIT Tiruchirappalli</a>
+  <a href="{% url 'accounts:graphs' colg='NIT Warangal'%}">NIT Warangal</a>
   </div>
   </div> 
 </div>

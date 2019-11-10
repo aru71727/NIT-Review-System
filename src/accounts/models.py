@@ -6,14 +6,30 @@ class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	mobile = models.CharField(max_length=13)
 	reg = models.CharField(max_length=10)
-	dob = models.DateField(auto_now=False, auto_now_add=False)
+	college = models.CharField(max_length=30)
 	gender = models.CharField(max_length=6)
 	date_created = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
 	
 
 	def __str__(self):
-		return self.mobile
+		return self.college
 
 	def __unicode__(self):
-		return self.mobile
+		return self.college
 
+
+class inputreviews(models.Model):
+	college = models.CharField(max_length=30)
+	infrastructure = models.IntegerField(default=0)
+	Academics = models.IntegerField(default=0)
+	Curricular = models.IntegerField(default=0)
+	Placement = models.IntegerField(default=0)
+	Hostel = models.IntegerField(default=0)
+	No_of_reviews = models.IntegerField(default=0)
+	Average = models.IntegerField(default=0)
+	
+
+	def __str__(self):
+		return self.college
+	def __str__(self):
+		return self.infrastructure

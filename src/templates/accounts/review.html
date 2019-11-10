@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title>Review </title>
+	<link rel="stylesheet" href="{% static 'accounts/review.css' %}">
+	<script type="text/javascript">
+
+		function myDisplay(){
+			
+			document.getElementById('heading').innerHTML="{{profile}}";
+			
+		}
+		// validating
+		function validate(){
+
+		}		
+	</script>
+	<style type="text/css">
+		fieldset{
+			text-align: left;margin-left: 200px;margin-right: 200px;
+		}
+		label{
+			
+		}
+
+		.checked {
+  			color: orange;
+		}
+	</style>
+</head>
+<body  onload="myDisplay()" style="background-color:powderblue;">
+	
+	<form method="post" action="{% url 'accounts:reviews' colg=profile %}">{% csrf_token %}
+	<center><h1 id="heading"></h1>
+<!-- kdsbvjsdbjhsdbhjfs-->
+<!--	&nbsp; &nbsp; &nbsp;!-->
+		<label name="a" value="Infrastructure"> <h2>Infrastructure</h2></label> <br>
+			<div class="container">
+			<fieldset class="btn">
+				<label name="a1" value="Infrastructure"> Rate the Architecture and greenery</label> <br>
+    			<input type="radio" id="star5" name="a1" value="5" /><label for="star5" title="5 stars">Outstanding</label>
+   				<input type="radio" id="star4" name="a1" value="4" /><label for="star4" title="4 stars">Very Good</label>
+    			<input type="radio" id="star3" name="a1" value="3" /><label for="star3" title="3 stars">Good</label>
+    			<input type="radio" id="star2" name="a1" value="2" /><label for="star2" title="2 stars">Poor</label>
+    			<input type="radio" id="star1" name="a1" value="1" /><label for="star1" title="1 star">Very Poor</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="a2" value="Infrastructure"> Rate the  hygene of campus </label> <br>
+				<input type="radio" id="star5" name="a2" value="5"/><label for="star5" title="5 stars">Outstanding</labe>
+   				<input type="radio" id="star4" name="a2" value="4" /><label for="star4" title="4 stars">Very Good</label>
+    			<input type="radio" id="star3" name="a2" value="3" /><label for="star3" title="3 stars">Good</label>
+    			<input type="radio" id="star2" name="a2" value="2" /><label for="star2" title="2 stars">Poor</label>
+    			<input type="radio" id="star1" name="a2" value="1" /><label for="star1" title="1 star">Very Poor</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="a4" value="Infrastructure">  Rate the Library</label> <br>
+				<input type="radio" id="star5" name="a3" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="a3" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="a3" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="a3" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="a3" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="a5" value="Infrastructure">  Rate the Wi-fi Connectivity</label> <br>
+				<input type="radio" id="star5" name="a4" value="5"/><label for="star5" title="5 stars">Outstanding</labe>
+   				<input type="radio" id="star4" name="a4" value="4" /><label for="star4" title="4 stars">Very Good</label>
+    			<input type="radio" id="star3" name="a4" value="3" /><label for="star3" title="3 stars">Good</label>
+    			<input type="radio" id="star2" name="a4" value="2" /><label for="star2" title="2 stars">Poor</label>
+    			<input type="radio" id="star1" name="a4" value="1" /><label for="star1" title="1 star">Very Poor</label>
+			</fieldset>
+			</div>
+<!-- kdsbvjsdbjhsdbhjfs-->
+		<label name="b" value="Academics"> <h2>Academics</h2></label> <br>
+			<div class="container">
+			<fieldset class="btn">
+				<label name="b1" value="Academics">  Are the teachers knowledgeable and helpful? </label> <br>
+    			<input type="radio" id="star5" name="b1" value="5"/><label for="star5" title="5 stars">Outstanding</labe>
+   				<input type="radio" id="star4" name="b1" value="4" /><label for="star4" title="4 stars">Very Good</label>
+    			<input type="radio" id="star3" name="b1" value="3" /><label for="star3" title="3 stars">Good</label>
+    			<input type="radio" id="star2" name="b1" value="2" /><label for="star2" title="2 stars">Poor</label>
+    			<input type="radio" id="star1" name="b1" value="1" /><label for="star1" title="1 star">Very Poor</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="b2" value="Academics"> Is the course curriculum relevant? </label> <br>
+				<input type="radio" id="star5" name="b2" value="5"/><label for="star5" title="5 stars">Outstanding</labe>
+   				<input type="radio" id="star4" name="b2" value="4" /><label for="star4" title="4 stars">Very Good</label>
+    			<input type="radio" id="star3" name="b2" value="3" /><label for="star3" title="3 stars">Good</label>
+    			<input type="radio" id="star2" name="b2" value="2" /><label for="star2" title="2 stars">Poor</label>
+    			<input type="radio" id="star1" name="b2" value="1" /><label for="star1" title="1 star">Very Poor</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="b3" value="Academics" >What is the level of eximanitation?</label> <br>
+				<input type="radio" id="star5" name="b3" value="5"/><label for="star5" title="5 stars">Very tough</label> 
+   				<input type="radio" id="star4" name="b3" value="4" /><label for="star4" title="4 stars">Tough</label>
+    			<input type="radio" id="star3" name="b3" value="3" /><label for="star3" title="3 stars">Normal</label> 
+    			<input type="radio" id="star2" name="b3" value="2" /><label for="star2" title="2 stars">Easy</label> 
+    			<input type="radio" id="star1" name="b3" value="1" /><label for="star1" title="1 star">Very Easy</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="b4" value="Academics"> Provision of seminars,guest lectures and workshops </label> <br>
+				<input type="radio" id="star5" name="b4" value="5"/><label for="star5" title="5 stars">Outstanding</labe>
+   				<input type="radio" id="star4" name="b4" value="4" /><label for="star4" title="4 stars">Very Good</label>
+    			<input type="radio" id="star3" name="b4" value="3" /><label for="star3" title="3 stars">Good</label>
+    			<input type="radio" id="star2" name="b4" value="2" /><label for="star2" title="2 stars">Poor</label>
+    			<input type="radio" id="star1" name="b4" value="1" /><label for="star1" title="1 star">Very Poor</label>
+			</fieldset>
+			</div>
+<!-- kdsbvjsdbjhsdbhjfs-->
+		<label name="c" value="Curriculur"> <h2>Extra curricular and campus life</h2></label> <br>
+			<div class="container">
+			<fieldset class="btn">
+				<label name="c1" value="Curriculur"> Availability of Sports Complex , Auditorium and Gym</label> <br>
+    			<input type="radio" id="star5" name="c1" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="c1" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="c1" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="c1" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="c1" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="c2" value="Infrastructure"> Availability of Coaches  </label> <br>
+				<input type="radio" id="star5" name="c2" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="c2" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="c2" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="c2" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="c2" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="c3" value="Infrastructure"> Level of participation in Co-Curricular activities </label> <br>
+				<input type="radio" id="star5" name="c3" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="c3" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="c3" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="c3" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="c3" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="c4" value="Infrastructure"> Society Culture of college(Dramatics,Arts,Literary etc)</label> <br>
+				<input type="radio" id="star5" name="c4" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="c4" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="c4" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="c4" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="c4" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="c5" value="Infrastructure">Cultural and Technical Fest</label> <br>
+				<input type="radio" id="star5" name="c5" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="c5" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="c5" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="c5" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="c5" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			</div>
+<!-- kdsbvjsdbjhsdbhjfs-->
+		<label name="d" value="Infrastructure"> <h2>Placement Statistics</h2></label> <br>
+			<div class="container">
+			<fieldset class="btn">
+				<label name="d1" value="Infrastructure"> What is the Placement rate?</label> <br>
+    			<input type="radio" id="star5" name="d1" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="d1" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="d1" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="d1" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="d1" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="d2" value="Infrastructure"> What is the Level of recruiting Companies? </label> <br>
+				<input type="radio" id="star5" name="d2" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="d2" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="d2" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="d2" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="d2" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="d3" value="Infrastructure"> Record of Packages offered to students</label> <br>
+				<input type="radio" id="star5" name="d3" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="d3" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="d3" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="d3" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="d3" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			</div>
+<!-- kdsbvjsdbjhsdbhjfs-->
+		<label name="e" value="Infrastructure"><h2> Hostel Life</h2></label> <br>
+			<div class="container">
+			<fieldset class="btn">
+				<label name="e1" value="Infrastructure"> Rate Architecture of hostels</label> <br>
+    			<input type="radio" id="star5" name="e1" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="e1" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="e1" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="e1" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="e1" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="e2" value="Infrastructure"> Rate the mess food </label> <br>
+				<input type="radio" id="star5" name="e2" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="e2" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="e2" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="e2" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="e2" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">
+				<label name="e3" value="Infrastructure"> Availability of Wi-Fi</label> <br>
+				<input type="radio" id="star5" name="e3" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="e3" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="e3" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="e3" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="e3" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="e4" value="Infrastructure"> Availability of medical facility</label> <br>
+				<input type="radio" id="star5" name="e4" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="e4" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="e4" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="e4" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="e4" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<fieldset class="btn">			
+				<label name="e5" value="Infrastructure"> Rate the Hostel Environment</label> <br>
+				<input type="radio" id="star5" name="e5" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="e5" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="e5" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="e5" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="e5" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+			<div class="container">
+			<fieldset class="btn">			
+				<label name="e6" value="Infrastructure"> Value for money</label> <br>
+				<input type="radio" id="star5" name="e6" value="5"/><label for="star5" title="Outstanding">5 stars</labe>
+   				<input type="radio" id="star4" name="e6" value="4" /><label for="star4" title="Very Good">4 stars</label>
+    			<input type="radio" id="star3" name="e6" value="3" /><label for="star3" title="Good">3 stars</label>
+    			<input type="radio" id="star2" name="e6" value="2" /><label for="star2" title="Poor">2 stars</label>
+    			<input type="radio" id="star1" name="e6" value="1" /><label for="star1" title="Very Poor">1 star</label>
+			</fieldset>
+		</div>
+			</div>
+			<div class="container">
+				<button onclick="" class="btn">submit</button>
+			</div>
+	</center>
+</form>
+</body>
+</html>
