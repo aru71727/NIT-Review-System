@@ -9,6 +9,8 @@ class Profile(models.Model):
 	college = models.CharField(max_length=30)
 	gender = models.CharField(max_length=6)
 	date_created = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
+	rated = models.IntegerField(default=0)
+
 	
 
 	def __str__(self):
@@ -31,5 +33,13 @@ class inputreviews(models.Model):
 
 	def __str__(self):
 		return self.college
-	def __str__(self):
-		return self.infrastructure
+	
+
+class Colleges(models.Model):
+    colg_name = models.CharField(max_length=30)
+    image = models.ImageField(upload_to="accounts/images",default="")
+
+
+    def __str__(self):
+        return self.colg_name
+

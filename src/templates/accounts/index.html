@@ -1,217 +1,43 @@
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-#a{
-position:relative;
-height:150px;
-width:100%;
-background-color:#28004d;
-}
-.title{
-color:white;
-font-size:50px;
-font-family:lucida console;
-text-align:center;
-}
-.subtitle{
-color:#ccb3ff;
-font-size:20px;
-font-family:segoe print;
-text-align:center;
-font-style:oblique;margin-left:60px;
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-/* Navbar container */
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-  font-family: Arial;
-}
+    <title>NIT REVIEW SYSTEM</title>
 
-/* Links inside the navbar */
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-/* Dropdown button */
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
-}
-
-/* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
-
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-#one a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-#two{
-
-position:relative;
-height:400px;
-width:70%;
-background-color:#e6e6ff;
-}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/index.css' %}">
+  </head>
+  <body>
+  <div id="wrapper" >
 
 
-}
-body {font-family: Verdana, sans-serif;}
-.mySlides {display: none;}
-img {vertical-align: middle;}
+    <div id="first" >
+    <div id="div11" style="margin-top: 15px;">
+      {% if user.is_authenticated %}
+      <h1 >HELLO!!     {{ user.first_name}}</h1>
+      <p style="margin-top: 30px;font-size: 1.4em"><i>Rate your college today!</i></p>
+      {% else %}
+      <h1 >NIT REVIEWS</h1>
+      <p style="margin-top: 30px;font-size: 1.4em"><i>Rate your college today!</i></p>
+      {% endif %}
+ </div>
 
 
-.slideshow-container {
-float:left;
-  max-width:70%;
-  height:auto;
-  position: relative;
-  margin: auto;
-}
-
-/* Caption text */
-.text {
-  color: #;
- float:left;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 40px;
-  width: 100%;
-  text-align: center;
-}
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-
-.active {
-  background-color: #717171;
-}
-.slideshow-container:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
-#three{
-
-height:560px;
-width:30%;
-float:right;
-background-color:#ffffff;
-}
-.row::after{
-	content:"";
-	display:table;
-	clear:both;
-}
-
-#one a:hover{
-
-    background-color: #ddd;
-    color:#00b3b3;
-}
-#foot{
-margin-top:20px;
-height:110px;
-width:100%;
-padding:20px;
-background-color:#1a001a;
-color:#ffffff;
-font-family:Times new roman;
-font-size:12;
-</style>
-
-</head>
-<body>
-<div id="a">
-{% if user.is_authenticated %}
-<p class="title" >HELLO! {{ user.first_name}}</p>
-
-{% else %}
-<p class="title" >NIT REVIEWS</p>
-{% endif %}
-<p class="subtitle">Rate your College today!</p>
-
-</div>
-<div class="navbar">
-  <a href="{% url 'home' %}">Home</a>
-  {% if user.is_authenticated %}
-
-   <a href="{% url 'accounts:review' id=user.id %}"> GIVE REVIEW </a>
-  <a href="{% url 'accounts:logout' %}">LOGOUT</a>
-
-  {% else %}
-  <a href="{% url 'accounts:register' %}">SIGN UP</a>
-  <a href="{% url 'accounts:login' %}">LOGIN</a>
-  {% endif %}
-  <a href="{% url 'accounts:graph' %}">Overall</a>
+ <div id="menu">
+ <div id="menu4">
+  <ul>
+     <li><a href="{% url 'home' %}">HOME</a></li>
+      
+     <li><a href="{% url 'accounts:graph' %}">OVERALL GRAPH</a></li>
+     <li>
   <div class="dropdown">
-    <button class="dropbtn">Select NIT
-    
-    </button>
+  <button class="dropbtn">SELECT NITs</button>
   <div class="dropdown-content">
   <a href="{% url 'accounts:graphs' colg='NIT Agartala'%}">NIT Agartala</a>
   <a href="{% url 'accounts:graphs' colg='NIT Allahabad'%}">NIT Allahabad</a>
@@ -224,113 +50,109 @@ font-size:12;
   <a href="{% url 'accounts:graphs' colg='NIT Tiruchirappalli'%}">NIT Tiruchirappalli</a>
   <a href="{% url 'accounts:graphs' colg='NIT Warangal'%}">NIT Warangal</a>
   </div>
-  </div> 
+</div>
+</li>
+ {% if user.is_authenticated %}
+
+     <li><a href="{% url 'accounts:review' id=user.id %}">GIVE REVIEW</a></li>
+     {% else %}
+     <li><a href="{% url 'accounts:register' %}">SIGN UP</a></li>
+     {% endif %}
+{% if user.is_authenticated %}
+     <li><a href="{% url 'accounts:logout' %}">LOGOUT</a></li>
+{% else %}
+     <li><a href="{% url 'accounts:login' %}">LOGIN</a></li>
+{% endif %}
+ </ul>
+</div>
+</div>
 </div>
 
 
-<div class="row">
-<div class="slideshow-container">
 
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Agartala</div>
-    <img src="/media/accounts/images/agartala.jpg" style="width:100%">
-	  
-    <div class="text">NIT Agartala</div>
-  </div>
 
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Allahabad</div>
-    <img src="/media/accounts/images/coffee.jpg" style="width:100%">
-    <div class="text">Never give up on what you really want to do.
-	The person with big dreams is more powerful than the one with all the facts.
-   -H. Jackson Brown, Jr.</div>
-  </div>
 
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Bhopal</div>
-    <img src="/media/accounts/images/Bhopal.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
-  </div>
-<div class="mySlides fade">
-    <div class="numbertext">NIT Calicut</div>
-    <img src="/media/accounts/images/Calicut.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
-  </div>
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Jamshedpur</div>
-    <img src="/media/accounts/images/jamshedpur.jpg" style="width:100%">
-    <div class="text">Caption </div>
-  </div>
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Kurukshetra</div>
-    <img src="/media/accounts/images/Kurukshetra.jpg" style="width:100%">
-    <div class="text">Caption </div>
-  </div>
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Raipur</div>
-    <img src="/media/accounts/images/NITRR_1.jpg" style="width:100%">
-    <div class="text">Caption </div>
-  </div>
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Surathkal</div>
-    <img src="/media/accounts/images/surathkal.jpg" style="width:100%">
-    <div class="text">Caption </div>
-  </div>
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Tiruchirappalli</div>
-    <img src="/media/accounts/images/trichy.jpg" style="width:100%">
-    <div class="text">Caption </div>
-  </div>
-  <div class="mySlides fade">
-    <div class="numbertext">NIT Warangal</div>
-    <img src="/media/accounts/images/Warangal.jpg" style="width:100%">
-    <div class="text">Caption </div>
+
+<div id="div1">
+
+<div id="slider" >
+<div class="container"  style="margin-right:100px;height:400px; margin-left:100px;width: 1200px; ">
+  
+<div id="demo" class="carousel slide my-3" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+
+       {% for i in range %}
+      <li data-target="#demo" data-slide-to="{{i}}" ></li>
+      {% endfor %}
+    </ul>
+
+    <!--Slideshow starts here -->
+    <div class="container carousel-inner no-padding"  style="  margin-top: 0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
+
+      <div class="carousel-item active">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+      <div class="c" style=" ">
+      <img src='/media/{{colleges.0.image}}' style="height:1200px; margin-left:-20px;" class="c-img-top" alt="...">
+      </div>
+    </div>
+
+
+        {% for i in colleges|slice:"0:"%}
+        <div class="col-xs-3 col-sm-3 col-md-3">
+      <div class="c" style="  margin-left: -20px; ">
+      <img src='/media/{{i.image}}' class="c-img-top" alt="...">
+      </div>
+    </div>
+        {% if forloop.counter|divisibleby:1 and forloop.counter > 0 and not forloop.last %}
+      </div><div class="carousel-item">
+        {% endif %}
+
+        {% endfor %}
+    </div>
+
+
+
+</div>
   </div>
 </div>
-
-<div id="three">
-<FORM method="post" action="">
-
-<Input type="text" placeholder="Give Email id" name="email" required></input>
-<br><br>
-<Input type="password" name="passwd" placeholder="PASSWORD" required></input><br><br>
-<Input type="submit"  value="login"></input>
-</form>
 </div>
 </div>
-<script>
-var slideIndex = 0;
-showSlides();
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-   
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    
-    slides[slideIndex-1].style.display = "block";  
-   
-    setTimeout(showSlides, 4000); 
-}
-
-
- </script>
-
-
-<div id="foot">
-<br>
-Reviews of the Students
+<div id="footer">
+  <p><i><marquee>
+Reviews of the Colleges
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Reviews by the Students
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Reviews for the Students
-<br><br><p>NIT Review System allows students from different NIT'S to give feedbacks on diffrent aspects
-and generates graph on that basis.</p>
-<h3><i><marquee>Visit Often for latest rankings...</i></marquee></h3>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+NIT Review System allows students from different NIT'S to give feedbacks on diffrent aspects
+and generates graph on that basis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<h7>Visit Often for latest rankings...</h7></i></marquee></p>
+</div>
+
+
+
+
+
+
+
+
+<!-- left and right controls for the slide -->
+<a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <span class="carousel-control-prev-icon"></span>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
+  <span class="carousel-control-next-icon"></span>
+</a>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </div>
 </body>
 </html>

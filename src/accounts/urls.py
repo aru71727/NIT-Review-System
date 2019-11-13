@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from django.urls import path,include
-from .views import registerview,givereview,reviewsview,graphviews,graphsviews
+from .views import registerview
+from .views import givereview,reviewsview,graphviews,graphsviews
 from .views import loginview,logoutview
 
 app_name='accounts'

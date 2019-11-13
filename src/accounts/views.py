@@ -1,19 +1,18 @@
 from django.shortcuts import render
+from django.contrib import messages
 from .forms import RegistrationForm,LoginForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseRedirect,HttpResponse
 from .models import Profile
 from .models import inputreviews
+from .models import Colleges
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import matplotlib.pyplot as plt 
 import numpy as np
 import io
- 
-#from django.db import connection
-#from django.core.urlresolvers import reverse
 
 
 from django.contrib.auth import (
@@ -48,7 +47,13 @@ def logoutview(request):
 
 
 def func(request):
-	return render(request,'accounts/index.html')
+	colleges = Colleges.objects.all()
+	nslides = len(colleges)
+	params = {'range': range(1,nslides),'colleges': colleges}
+	return render(request,'accounts/index.html',params)
+
+
+	
 
 def registerview(request):
 	form = RegistrationForm(request.POST or None)
@@ -62,7 +67,6 @@ def registerview(request):
 			mobile = form.cleaned_data.get("mobile")
 			gender = form.cleaned_data.get("gender")
 			college = form.cleaned_data.get("college")
-			#dob = form.cleaned_data.get("dob")
 			email = form.cleaned_data.get('email')
 			username = form.cleaned_data.get("username")
 			password  = form.cleaned_data.get('password ')
@@ -80,13 +84,15 @@ def registerview(request):
 			user.save()
 			
 
-			pro = Profile(reg=reg, mobile=mobile, college=college , gender=gender, user=user)
+			pro = Profile(reg=reg, mobile=mobile, college=college , gender=gender, user=user ,rated = 0)
 			pro.save()
 
 			messages.success(request, "Successfully Saved")
-		
+			context={
+				"msg":"Successfully Registered!!"
+			} 
 			
-			return render(request,'accounts/index.html')
+			return render(request,'accounts/messagesdisplay.html',context)
 	context = {
 		'form':form,
 	}
@@ -96,19 +102,29 @@ def registerview(request):
 
 def givereview(request,id):
 	id=int(id)
+	print(id)
 	profile = Profile.objects.filter(user_id=id)
 	profile=profile[0]
-	#print(id)
+	print(type(profile.rated))
 	#print(profile.college)
 	context = {
 		'profile':profile.college,
 	}
+	if profile.rated == 1 :
+		context={
+			"msg":"Review Submitted!!"
+		} 
+		return render(request,'accounts/messagesdisplay.html',context)
+	else :
+		Profile.objects.filter(user_id=id).update(rated = 1 )
+		
 	return render(request,'accounts/review.html',context)
 
 
 def reviewsview(request,colg):
 	colg=str(colg)
 	print(colg)
+	
 	if request.method == "POST":
 
 		a1 = request.POST.get("a1")
@@ -130,6 +146,7 @@ def reviewsview(request,colg):
 		d1 = request.POST.get("d1")
 		d2 = request.POST.get("d2")
 		d3 = request.POST.get("d3")
+		# d4 = request.POST.get("d4")
 
 		e1 = request.POST.get("e1")
 		e2 = request.POST.get("e2")
@@ -207,23 +224,27 @@ def reviewsview(request,colg):
 		d1 = int(d1)
 		d2 = int(d2)
 		d3 = int(d3)
-		#d4 = int(d4)
+		
 
 		e1 = int(e1)
 		e2 = int(e2)
 		e3 = int(e3)
 		e4 = int(e4)
-
-		infra = review.infrastructure+(a1+a2+a3+a4)/20*100
-		academic = review.Academics+(b1+b2+b3+b4)/20*100
-		curr = review.Curricular+(c1+c2+c3+c4)/20*100
-		placement = review.Placement+(d1+d2+d3)/20*100
-		hostel = review.Hostel+(e1+e2+e3+e4)/20*100
-
 		n = review.No_of_reviews + 1
+		infra = (((review.infrastructure/100)*n*20)+(a1+a2+a3+a4))/((n+1)*20)*100
+		academic =  (((review.Academics/100)*n*20)+(b1+b2+b3+b4))/((n+1)*20)*100
+		curr =  (((review.Curricular/100)*n*20)+(c1+c2+c3+c4))/((n+1)*20)*100
+		placement = (((review.Placement/100)*n*20)+(d1+d2+d3))/((n+1)*20)*100
+		hostel = (((review.Hostel/100)*n*20)+(e1+e2+e3+e4))/((n+1)*20)*100
+
+		
 		avg = (infra + academic + curr + placement + hostel) / 5
 		inputreviews.objects.filter(college=colg).update(infrastructure = infra, Academics = academic, Curricular = curr, Placement = placement, Hostel = hostel, No_of_reviews = n , Average = avg  )
-	
+		
+		context={
+			"msg":"Review Submitted!!"
+		} 
+		return render(request,'accounts/messagesdisplay.html',context)
 	return render(request,'accounts/index.html')
 
 
@@ -286,13 +307,13 @@ def graphviews(request):
 	width = 0.55      # the width of the bars: can also be len(x) sequence
 
 	
-	fig, ax = plt.subplots()
+	fig, ax = plt.subplots(figsize=(8,7))
 	ax.bar(ind, pos, width,color='green')
 	ax.bar(ind,neg,width,bottom=pos,color='red')
 	ax.set(ylabel ='Level of measurement', title = 'Analysis of various NITs')
 	ax.set_xticks(ind)
 	ax.set_xticklabels(['NIT Agartala','NIT Allahabad','NIT Bhopal','NIT Calicut', 'NIT Jamshedpur', 'NIT Kurukshetra', 'NIT Raipur', 
-		'NIT Surathkal','NIT Tiruchirappalli','NIT Warangal'])
+		'NIT Surathkal','NIT Tiruchirappalli','NIT Warangal'],rotation=40)
 	ax.set_xticks(ind,(	))
 	ax.grid()
 
@@ -320,21 +341,21 @@ def graphsviews(request,colg):
 	#print(all_data)
 	n = all_data.No_of_reviews
 	pos[0] = all_data.infrastructure
-	neg[0] = (n*20) - all_data.infrastructure
+	neg[0] = 100 - all_data.infrastructure
 
 
 	pos[1] = all_data.Academics
-	neg[1] = (n*20)- all_data.Academics
+	neg[1] = 100- all_data.Academics
 
 
 	pos[2] = all_data.Placement
-	neg[2] = (n*20) - all_data.Placement
+	neg[2] = 100 - all_data.Placement
 
 	pos[3] = all_data.Hostel
-	neg[3] = (n*20)- all_data.Hostel
+	neg[3] = 100- all_data.Hostel
 
 	pos[4] = all_data.Curricular
-	neg[4] = (n*20) - all_data.Curricular
+	neg[4] = 100 - all_data.Curricular
 
 
 	n = 5
