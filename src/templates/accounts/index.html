@@ -34,10 +34,12 @@
   <ul>
      <li><a href="{% url 'home' %}">HOME</a></li>
       
-     <li><a href="{% url 'accounts:graph' %}">OVERALL GRAPH</a></li>
-     <li>
+     <li><a href="{% url 'accounts:graph' %}">ALL NITs</a></li>
+     <li><a href="{% url 'accounts:placement' %}">PLACEMENTs</a></li>
+
+  <li>
   <div class="dropdown">
-  <button class="dropbtn">SELECT NITs</button>
+  <button class="dropbtn"><b>SELECT NITs</b></button>
   <div class="dropdown-content">
   <a href="{% url 'accounts:graphs' colg='NIT Agartala'%}">NIT Agartala</a>
   <a href="{% url 'accounts:graphs' colg='NIT Allahabad'%}">NIT Allahabad</a>
@@ -63,6 +65,7 @@
 {% else %}
      <li><a href="{% url 'accounts:login' %}">LOGIN</a></li>
 {% endif %}
+
  </ul>
 </div>
 </div>

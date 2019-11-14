@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.urls import path,include
 from .views import registerview
-from .views import givereview,reviewsview,graphviews,graphsviews
+from .views import givereview,reviewsview,graphviews,graphsviews,placementviews
 from .views import loginview,logoutview
 
 app_name='accounts'
@@ -15,4 +15,6 @@ urlpatterns = [
     path(r'reviews/(?p<colg>)/', reviewsview, name="reviews"),
     path(r'simple.pngs', graphviews,name="graph"),
     path(r'simple.pngs/(?p<colg>)/', graphsviews,name="graphs"),
+    path(r'placement.pngs', placementviews,name="placement"),
+
 ]

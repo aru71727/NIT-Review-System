@@ -19,7 +19,7 @@
 #menu{
   height: 60px;
   background-color: black;
-  width: 1350px;
+  width: 100%;
 
 }
 
@@ -27,7 +27,7 @@
 {
 height:50px;
 border:1px solid black;
-width:700px;
+width:1200px;
 background-color:black;
 
 }

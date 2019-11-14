@@ -112,7 +112,7 @@ def givereview(request,id):
 	}
 	if profile.rated == 1 :
 		context={
-			"msg":"Review Submitted!!"
+			"msg":"Review Already Submitted!!"
 		} 
 		return render(request,'accounts/messagesdisplay.html',context)
 	else :
@@ -146,7 +146,7 @@ def reviewsview(request,colg):
 		d1 = request.POST.get("d1")
 		d2 = request.POST.get("d2")
 		d3 = request.POST.get("d3")
-		# d4 = request.POST.get("d4")
+		d4 = request.POST.get("d4")
 
 		e1 = request.POST.get("e1")
 		e2 = request.POST.get("e2")
@@ -168,6 +168,8 @@ def reviewsview(request,colg):
 			d2 = 0
 		if  d3 == None :
 			d3 = 0
+		if  d4 == None :
+			d4 = 0
 
 		if  c1 == None :
 			c1 = 0
@@ -200,7 +202,7 @@ def reviewsview(request,colg):
 		print(a1,a2,a3,a4)
 		print(b1,b2,b3,b4)
 		print(c1,c2,c3,c4)
-		print(d1,d2,d3)
+		print(d1,d2,d3,d4)
 		print(e1,e2,e3,e4)
 		review = inputreviews.objects.filter(college=colg)
 		review = review[0]
@@ -224,6 +226,8 @@ def reviewsview(request,colg):
 		d1 = int(d1)
 		d2 = int(d2)
 		d3 = int(d3)
+		d4 = int(d4)
+
 		
 
 		e1 = int(e1)
@@ -234,7 +238,7 @@ def reviewsview(request,colg):
 		infra = (((review.infrastructure/100)*n*20)+(a1+a2+a3+a4))/((n+1)*20)*100
 		academic =  (((review.Academics/100)*n*20)+(b1+b2+b3+b4))/((n+1)*20)*100
 		curr =  (((review.Curricular/100)*n*20)+(c1+c2+c3+c4))/((n+1)*20)*100
-		placement = (((review.Placement/100)*n*20)+(d1+d2+d3))/((n+1)*20)*100
+		placement = (((review.Placement/100)*n*20)+(d1+d2+d3+d4))/((n+1)*20)*100
 		hostel = (((review.Hostel/100)*n*20)+(e1+e2+e3+e4))/((n+1)*20)*100
 
 		
@@ -242,7 +246,7 @@ def reviewsview(request,colg):
 		inputreviews.objects.filter(college=colg).update(infrastructure = infra, Academics = academic, Curricular = curr, Placement = placement, Hostel = hostel, No_of_reviews = n , Average = avg  )
 		
 		context={
-			"msg":"Review Submitted!!"
+			"msg":" Your Review Is Recorded!! Thanks for giving Review !!"
 		} 
 		return render(request,'accounts/messagesdisplay.html',context)
 	return render(request,'accounts/index.html')
@@ -254,7 +258,7 @@ def reviewsview(request,colg):
 
 
 def graphviews(request):
-
+	
 	pos = [0]*10
 	neg = [0]*10
 
@@ -310,7 +314,7 @@ def graphviews(request):
 	fig, ax = plt.subplots(figsize=(8,7))
 	ax.bar(ind, pos, width,color='green')
 	ax.bar(ind,neg,width,bottom=pos,color='red')
-	ax.set(ylabel ='Level of measurement', title = 'Analysis of various NITs')
+	ax.set(ylabel ='Level of measurement', title = 'Analysis of various NITs ')
 	ax.set_xticks(ind)
 	ax.set_xticklabels(['NIT Agartala','NIT Allahabad','NIT Bhopal','NIT Calicut', 'NIT Jamshedpur', 'NIT Kurukshetra', 'NIT Raipur', 
 		'NIT Surathkal','NIT Tiruchirappalli','NIT Warangal'],rotation=40)
@@ -360,7 +364,7 @@ def graphsviews(request,colg):
 
 	n = 5
 	ind = np.arange(n)    # the x locations for the groups
-	width = 0.50      # the width of the bars: can also be len(x) sequence
+	width = 0.45      # the width of the bars: can also be len(x) sequence
 
 	
 	fig, ax = plt.subplots()
@@ -378,4 +382,86 @@ def graphsviews(request,colg):
 	plt.close(fig)
 	response = HttpResponse(buf.getvalue(), content_type='image/png')
 	return response
+
+
+
+
+
+
+
+
+
+
+
+def placementviews(request):
+	print("placement graph")
+	pos = [0]*10
+	neg = [0]*10
+
+	all_data = inputreviews.objects.values_list('college', 'Placement')
+	print(all_data)
+	for i in range(len(all_data)):
+		if all_data[i][0] == 'NIT Agartala':
+			pos[0] = all_data[i][1]
+			neg[0] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Allahabad':
+			pos[1] = all_data[i][1]
+			neg[1] = 100 - all_data[i][1]
+
+		elif all_data[i][0]== 'NIT Bhopal':
+			pos[2] = all_data[i][1]
+			neg[2] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Calicut':
+			pos[3] = all_data[i][1]
+			neg[3] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Jamshedpur':
+			pos[4] = all_data[i][1]
+			neg[4] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Kurukshetra':
+			pos[5] = all_data[i][1]
+			neg[5] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Raipur':
+			pos[6] = all_data[i][1]
+			neg[6] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Surathkal':
+			pos[7] = all_data[i][1]
+			neg[7] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Tiruchirappalli':
+			pos[8] = all_data[i][1]
+			neg[8] = 100 - all_data[i][1]
+
+		elif all_data[i][0] == 'NIT Warangal':
+			pos[9] = all_data[i][1]
+			neg[9] = 100 - all_data[i][1]
+
+
+	n = 10
+	ind = np.arange(n)    # the x locations for the groups
+	width = 0.55      # the width of the bars: can also be len(x) sequence
+
+	
+	fig, ax = plt.subplots(figsize=(8,7))
+	ax.bar(ind, pos, width,color='green')
+	ax.bar(ind,neg,width,bottom=pos,color='red')
+	ax.set(ylabel ='Level of measurement', title = 'Analysis of various NITs Placements ')
+	ax.set_xticks(ind)
+	ax.set_xticklabels(['NIT Agartala','NIT Allahabad','NIT Bhopal','NIT Calicut', 'NIT Jamshedpur', 'NIT Kurukshetra', 'NIT Raipur', 
+		'NIT Surathkal','NIT Tiruchirappalli','NIT Warangal'],rotation=40)
+	ax.set_xticks(ind,(	))
+	ax.grid()
+
+	FigureCanvas(fig)
+	buf = io.BytesIO()
+	plt.savefig(buf, format='png')
+	plt.close(fig)
+	response = HttpResponse(buf.getvalue(), content_type='image/png')
+	return response
+
 
